@@ -20,10 +20,16 @@ export class GuardService {
 
   addCommissionToCurrentGuard (commission:number) {}
   
-  getCurrentGuard () {}
+  getCurrentGuard ():Guard {
+    return this.currentGuard;
+  }
 
   getGuards ():Guard[] {
     return this.guards;
+  }
+
+  logOut ():void {
+    this.currentGuard = null;
   }
 
   setCurrentGuard (id:number) {
