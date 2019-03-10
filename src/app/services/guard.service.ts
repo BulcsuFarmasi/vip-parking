@@ -7,7 +7,7 @@ import { Guard } from '../models/guard';
 })
 export class GuardService {
 
-  activeGuard:Guard|null = null;
+  currentGuard:Guard|null = null;
   guards:Guard[] = [
     {id: 1, name: 'Attila', commission: 0},
     {id: 2, name: 'Bálint', commission: 0},
@@ -26,6 +26,12 @@ export class GuardService {
     return this.guards;
   }
 
-  setCurrentGuard (id:number) {}
+  setCurrentGuard (id:number) {
+    let index = this.guards.findIndex(guard => {
+      return guard.id === id;
+    })
+
+    this.currentGuard = this.guards[index];
+  }
 
 }
