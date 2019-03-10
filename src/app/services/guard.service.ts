@@ -22,7 +22,9 @@ export class GuardService {
   
   getCurrentGuard () {}
 
-  getGuards () {}
+  getGuards ():Guard[] {
+    return this.guards;
+  }
 
   setCurrentGuard (id:number) {}
 
