@@ -1,3 +1,11 @@
-<p>
-  log-in works!
-</p>
+<div class="log-in">
+  <form (ngSubmit)="logIn()">
+    <p><label for="guard">Kiválasztott őr</label><br>
+    <select name="guard" id="guard" [(ngModel)]="selectedGuardId">
+      <option [value]="guard.id" *ngFor="let guard of guards">{{ guard.name }}</option>
+    </select></p>
+    <p>
+      <button type="submit">Belépés</button>
+    </p>
+  </form>
+</div>
