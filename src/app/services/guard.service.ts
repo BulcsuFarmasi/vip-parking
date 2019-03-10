@@ -27,6 +27,7 @@ export class GuardService {
   }
 
   setCurrentGuard (id:number) {
+    id = +id;
     let index = this.guards.findIndex(guard => {
       return guard.id === id;
     })
