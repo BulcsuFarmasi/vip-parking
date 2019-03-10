@@ -12,6 +12,7 @@ import { GuardService } from 'src/app/services/guard.service';
 export class LogInComponent implements OnInit {
 
   guards:Guard[]
+  selectedGuardId:number = 1;
   
   constructor(private guardService:GuardService, private router:Router) { }
 
@@ -19,8 +20,8 @@ export class LogInComponent implements OnInit {
     this.guards = this.guardService.getGuards(); 
   }
 
-  logIn (id:number) {
-      this.guardService.setCurrentGuard(id);
+  logIn () {
+      this.guardService.setCurrentGuard(this.selectedGuardId);
       this.router.navigate(['/dashboard'])
   }
 
