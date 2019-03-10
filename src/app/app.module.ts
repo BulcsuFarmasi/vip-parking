@@ -8,7 +8,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ParkingChartComponent } from './components/parking-chart/parking-chart.component';
 import { CashRegisterComponent } from './components/cash-register/cash-register.component';
-import { CommisionComponent } from './components/commision/commision.component';
+import { CommissionComponent } from './components/commission/commission.component';
 import { ActiveParkingsComponent } from './components/active-parkings/active-parkings.component';
 import { NewParkingComponent } from './components/new-parking/new-parking.component';
 import { ParkingTicketComponent } from './components/parking-ticket/parking-ticket.component';
@@ -21,7 +21,7 @@ import { ParkingTicketComponent } from './components/parking-ticket/parking-tick
     HeaderComponent,
     ParkingChartComponent,
     CashRegisterComponent,
-    CommisionComponent,
+    CommissionComponent,
     ActiveParkingsComponent,
     NewParkingComponent,
     ParkingTicketComponent
