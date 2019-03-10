@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-cash-register',
+  selector: 'cash-register',
   templateUrl: './cash-register.component.html',
   styleUrls: ['./cash-register.component.scss']
 })

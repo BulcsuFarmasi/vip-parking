@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-commision',
+  selector: 'commision',
   templateUrl: './commision.component.html',
   styleUrls: ['./commision.component.scss']
 })
