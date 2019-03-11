@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+import { ParkingService } from 'src/app/services/parking.service';
 
 @Component({
   selector: 'new-parking-form',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewParkingFormComponent implements OnInit {
 
-  constructor() { }
+  
+  @Output('formSaved') formSaved:EventEmitter<boolean> = new EventEmitter();
+  
+  constructor(private parkingService:ParkingService) { }
 
   ngOnInit() {
+  }
+
+  saveParking (form:NgForm) {
+      this.parkingService.addParking(form.value);
+      this.formSaved.emit(true);
   }
 
 }

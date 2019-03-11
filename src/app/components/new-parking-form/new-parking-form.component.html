@@ -1,6 +1,6 @@
 <div class="modal">
   <h2>Új Parkolás</h2>
-  <form #form="ngForm" (ngSumbit)="saveParking(form)">
+  <form #form="ngForm" (ngSubmit)="saveParking(form)">
     <div ngModelGroup="client">
         <p>
           <input type="text" name="name" placeholder="Név" ngModel>
