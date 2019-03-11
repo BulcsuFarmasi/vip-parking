@@ -5,6 +5,6 @@
   <p>E-mail cím: <strong>{{ parking.client.email }}</strong></p>
   <p>Érkezés: <strong>{{ parking.startTime }}</strong></p>
   <p>Rendszám: <strong>{{ parking.licenceNumber }}</strong></p>
-  qr kód
+  <qrcode [qrdata]="parking.licenceNumber"></qrcode>
   <button (click)="printTicket()">Nyomtatás</button>
 </div>
