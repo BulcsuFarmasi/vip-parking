@@ -16,7 +16,11 @@ export class ParkingService {
   
   constructor() { }
 
-  addParking (parking:Parking) {}
+  addParking (parking:Parking) {
+    parking.active = true;
+    this.parkings.push(parking);
+    console.log(this.parkings);
+  }
 
   endParking () {}
 
