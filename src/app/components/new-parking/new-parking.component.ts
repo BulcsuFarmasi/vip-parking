@@ -35,7 +35,7 @@ export class NewParkingComponent implements OnInit {
   }
 
   onFormSaved (parking:Parking) {
-    this.parking = parking
+    this.parking = parking;
     this.formVisible = false;
     this.ticketVisible = true;
   }
