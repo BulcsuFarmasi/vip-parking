@@ -10,6 +10,8 @@ export class ParkingService {
   constructor() { }
 
   addParking (parking:Parking) {}
+
+  endParking () {}
   
   getActiveParkings () {}
 }
