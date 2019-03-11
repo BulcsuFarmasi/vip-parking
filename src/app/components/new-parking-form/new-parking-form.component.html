@@ -1,3 +1,22 @@
-<p>
-  new-parking-form works!
-</p>
+<div class="modal">
+  <h2>Új Parkolás</h2>
+  <form #form="ngForm" (ngSumbit)="saveParking(form)">
+    <div ngModelGroup="client">
+        <p>
+          <input type="text" name="name" placeholder="Név" ngModel>
+        </p>
+        <p>
+          <input type="email" name="email" placeholder="E-mail cím" ngModel>
+        </p>
+    </div>
+    <p>
+        <input type="text" name="startTime" placeholder="Érkezés ideje" ngModel> 
+    </p>
+    <p>
+        <input type="text" name="licenceNumber" placeholder="Rendszám" ngModel>
+    </p>
+    <p>
+      <button type="submit">Parkolás kezdése</button>
+    </p>
+  </form>
+</div>
