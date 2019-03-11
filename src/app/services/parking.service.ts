@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 
 import { Parking } from '../models/parking';
 
@@ -9,9 +9,9 @@ import { Parking } from '../models/parking';
 })
 export class ParkingService {
 
-  activeParkings$:Subject<Parking[]> = new Subject();
-  isBelowCapacity$:Subject<boolean> = new ReplaySubject();
   parkings:Parking[] = [];
+  activeParkings:Subject<Parking[]> = new BehaviorSubject(this.parkings);
+  isBelowCapacity$:Subject<boolean> = new ReplaySubject();
   parkCapacity:number = 10;
   
   constructor() { }
@@ -19,9 +19,10 @@ export class ParkingService {
   addParking (parking:Parking) {
     
     parking.active = true;
-    parking.latest = true;
     
     this.parkings.push(parking);
+
+    this.activeParkings.next(this.filterActiveParkings());
   }
 
   endParking () {}
@@ -33,7 +34,7 @@ export class ParkingService {
   }
   
   getActiveParkings () {
-    return this.activeParkings$;
+    return this.activeParkings;
   }
 
   getIsBelowCapacity () {
