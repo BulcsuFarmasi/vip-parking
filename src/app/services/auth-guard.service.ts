@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+
 import { GuardService } from './guard.service';
 
 @Injectable({
@@ -7,9 +8,13 @@ import { GuardService } from './guard.service';
 })
 export class AuthGuardService implements CanActivate {
 
-  constructor(private guardService:GuardService) { }
+  constructor(private guardService:GuardService, private router:Router) { }
 
   canActivate ():boolean {
-    return this.guardService.getCurrentGuard !== null;
+    let canActivate = this.guardService.getCurrentGuard() !== null;
+    if (!canActivate) {
+      this.router.navigate(['/']);
+    }
+    return canActivate;
   }
 }
