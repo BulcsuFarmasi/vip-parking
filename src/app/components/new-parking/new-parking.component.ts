@@ -16,10 +16,22 @@ export class NewParkingComponent implements OnInit {
   
   constructor(private parkingService:ParkingService) { }
 
-  ngOnInit() {
+  ngOnInit ():void {
     this.isBelowCapacity$ = this.parkingService.getIsBelowCapacity().subscribe(isBelowCapacity => {
       this.isBelowCapacity = isBelowCapacity;
     })
+  }
+
+  ngOnDestroy ():void {
+    this.isBelowCapacity$.unsubscribe();
+  }
+
+  hideForm () {
+    this.formVisible = false;
+  }
+
+  showForm () {
+    this.formVisible = true;
   }
 
 
