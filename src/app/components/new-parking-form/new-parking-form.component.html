@@ -1,14 +1,12 @@
 <div class="modal">
   <h2>Új Parkolás</h2>
   <form #form="ngForm" (ngSubmit)="saveParking(form)">
-    <div ngModelGroup="client">
-        <p>
+      <p>
           <input type="text"  #name="ngModel"  name="name" placeholder="Név" ngModel>
-        </p>
-        <p>
+      </p>
+      <p>
           <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" ngModel>
-        </p>
-    </div>
+      </p>
     <p>
         <input type="text" name="startTime" placeholder="Érkezés ideje" ngModel> 
     </p>

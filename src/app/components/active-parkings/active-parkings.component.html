@@ -12,8 +12,8 @@
       <th>Lezárárs</th>
     </tr>
     <tr *ngFor="let parking of parkings">
-      <td>{{ parking.client.name }}</td>
-      <td>{{ parking.client.email }}</td>
+      <td>{{ parking.name }}</td>
+      <td>{{ parking.email }}</td>
       <td>{{ parking.startTime }}</td>
       <td>{{ parking.licenceNumber }}</td>
       <td><button (click)="endParking(parking)">Lezárás</button></td>

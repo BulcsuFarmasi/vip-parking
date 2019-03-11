@@ -1,8 +1,7 @@
-import { Client } from './client';
-
 export interface Parking {
     id:number;
-    client:Client;
+    name:string;
+    email:string;
     startTime:Date;
     endTime:Date;
     licenceNumber:string;
