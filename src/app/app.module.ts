@@ -13,6 +13,7 @@ import { CommissionComponent } from './components/commission/commission.componen
 import { ActiveParkingsComponent } from './components/active-parkings/active-parkings.component';
 import { NewParkingComponent } from './components/new-parking/new-parking.component';
 import { ParkingTicketComponent } from './components/parking-ticket/parking-ticket.component';
+import { NewParkingFormComponent } from './components/new-parking-form/new-parking-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ParkingTicketComponent } from './components/parking-ticket/parking-tick
     CommissionComponent,
     ActiveParkingsComponent,
     NewParkingComponent,
-    ParkingTicketComponent
+    ParkingTicketComponent,
+    NewParkingFormComponent
   ],
   imports: [
     BrowserModule,
