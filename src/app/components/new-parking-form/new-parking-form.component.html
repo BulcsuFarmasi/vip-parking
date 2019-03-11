@@ -3,17 +3,17 @@
   <form #form="ngForm" (ngSubmit)="saveParking(form)">
     <div ngModelGroup="client">
         <p>
-          <input type="text" name="name" placeholder="Név" ngModel>
+          <input type="text"  #name="ngModel"  name="name" placeholder="Név" ngModel>
         </p>
         <p>
-          <input type="email" name="email" placeholder="E-mail cím" ngModel>
+          <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" ngModel>
         </p>
     </div>
     <p>
         <input type="text" name="startTime" placeholder="Érkezés ideje" ngModel> 
     </p>
     <p>
-        <input type="text" name="licenceNumber" placeholder="Rendszám" ngModel>
+        <input type="text" #licenceNumber="ngModel" name="licenceNumber" placeholder="Rendszám" ngModel>
     </p>
     <p>
       <button type="submit">Parkolás kezdése</button>
