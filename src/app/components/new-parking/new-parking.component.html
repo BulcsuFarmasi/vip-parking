@@ -2,4 +2,4 @@
 <ng-template #capacityReached>
   <p>A parkolóban az összes hely foglalt</p>
 </ng-template>
-<new-parking-form *ngIf="formVisible"></new-parking-form>
+<new-parking-form *ngIf="formVisible" (formSaved)="hideForm()"></new-parking-form>
