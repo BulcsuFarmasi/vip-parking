@@ -1,3 +1,23 @@
-<p>
-  active-parkings works!
-</p>
+<div class="active-parkings">
+  <p>
+    <input type="search" placeholder="Keresés">
+    <button>Keresés</button>
+  </p>
+  <table>
+    <tr>
+      <th>Νév</th>
+      <th>E-mail cím</th>
+      <th>Érkezés</th>
+      <th>Rendszám</th>
+      <th>Lezárárs</th>
+    </tr>
+    <tr *ngFor="let parking of parkings">
+      <td>{{ parking.client.name }}</td>
+      <td>{{ parking.client.email }}</td>
+      <td>{{ parking.startTime }}</td>
+      <td>{{ parking.licenceNumber }}</td>
+      <td><button (click)="endParking(parking)">Lezárás</button></td>
+    </tr>
+  </table>
+  <p *ngIf="parkings.length === 0">Jelenleg egy autó sem áll a parkolóban</p>
+</div>

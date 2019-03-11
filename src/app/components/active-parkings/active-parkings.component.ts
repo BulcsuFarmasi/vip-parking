@@ -12,7 +12,7 @@ import { ParkingService } from 'src/app/services/parking.service';
 })
 export class ActiveParkingsComponent implements OnInit {
 
-  parkings:Parking[];
+  parkings:Parking[] = [];
   parkings$:Subscription;
   
   constructor(private parkingService:ParkingService) { }
