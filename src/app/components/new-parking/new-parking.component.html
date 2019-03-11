@@ -1,3 +1,5 @@
-<p>
-  new-parking works!
-</p>
+<button *ngIf="isBelowCapacity; else capacityReached" (click)="showForm()">Új parkolás</button>
+<ng-template #capacityReached>
+  <p>A parkolóban az összes hely foglalt</p>
+</ng-template>
+<new-parking-form *ngIf="formVisible"></new-parking-form>
