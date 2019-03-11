@@ -13,6 +13,7 @@ export class NewParkingComponent implements OnInit {
   formVisible:boolean;
   isBelowCapacity:boolean;
   isBelowCapacity$:Subscription;
+  ticketVisible:boolean;
   
   constructor(private parkingService:ParkingService) { }
 
@@ -26,8 +27,13 @@ export class NewParkingComponent implements OnInit {
     this.isBelowCapacity$.unsubscribe();
   }
 
-  hideForm () {
+  hideTicket () {
+    this.ticketVisible = false;
+  }
+
+  onFormSaved () {
     this.formVisible = false;
+    this.ticketVisible = true;
   }
 
   showForm () {
