@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewParkingComponent implements OnInit {
 
+  formVisible:boolean;
+  isBelowCapacity:boolean;
+  
   constructor() { }
 
   ngOnInit() {
   }
+
+
 
 }
