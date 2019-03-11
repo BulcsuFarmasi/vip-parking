@@ -27,4 +27,8 @@ export class ActiveParkingsComponent implements OnInit {
     this.parkings$.unsubscribe();
   }
 
+  endParking (id:number) {
+    this.parkingService.endParking(id)
+  }
+
 }

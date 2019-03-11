@@ -16,7 +16,7 @@
       <td>{{ parking.email }}</td>
       <td>{{ parking.startTime }}</td>
       <td>{{ parking.licenceNumber }}</td>
-      <td><button (click)="endParking(parking)">Lezárás</button></td>
+      <td><button (click)="endParking(parking.id)">Lezárás</button></td>
     </tr>
   </table>
   <p *ngIf="parkings.length === 0">Jelenleg egy autó sem áll a parkolóban</p>

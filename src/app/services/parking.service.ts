@@ -19,13 +19,20 @@ export class ParkingService {
   addParking (parking:Parking) {
     
     parking.active = true;
+    parking.id = this.parkings.length + 1;
     
     this.parkings.push(parking);
 
     this.activeParkings.next(this.filterActiveParkings());
   }
 
-  endParking () {}
+  endParking (id:number) {
+      const index = this.parkings.findIndex(parking => parking.id === id);
+
+      this.parkings[index].active = false;
+
+      this.activeParkings.next(this.filterActiveParkings());
+  }
 
   filterActiveParkings ():Parking[] {
     const activeParkings = this.parkings.filter(filter => filter.active);
