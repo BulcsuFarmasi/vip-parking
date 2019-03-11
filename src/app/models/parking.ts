@@ -7,4 +7,5 @@ export interface Parking {
     endTime:Date;
     licenceNumber:string;
     active:boolean;
+    latest:boolean;
 }

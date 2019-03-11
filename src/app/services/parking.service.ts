@@ -17,19 +17,24 @@ export class ParkingService {
   constructor() { }
 
   addParking (parking:Parking) {
+    this.removeLatestParking();
+    
     parking.active = true;
+    parking.latest = true;
+    
     this.parkings.push(parking);
-    console.log(this.parkings);
   }
 
   endParking () {}
 
   filterActiveParkings ():Parking[] {
-    const activeParkings = this.parkings.filter(filter => {
-      return filter.active;
-    })
+    const activeParkings = this.parkings.filter(filter => filter.active);
 
     return activeParkings;
+  }
+
+  findLatestParking () {
+    return this.parkings.find(parking => parking.latest);
   }
   
   getActiveParkings () {
@@ -47,5 +52,10 @@ export class ParkingService {
     const isBelowCapacity = activeParkings.length < this.parkCapacity;
 
     this.isBelowCapacity$.next(isBelowCapacity);
+  }
+
+  removeLatestParking () {
+    const parking = this.findLatestParking();
+    parking.latest = false;
   }
 }
