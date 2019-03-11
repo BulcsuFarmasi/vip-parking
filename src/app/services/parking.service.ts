@@ -9,7 +9,8 @@ import { Parking } from '../models/parking';
 })
 export class ParkingService {
 
-  activeParkings$:Subject<Parking[]>
+  activeParkings$:Subject<Parking[]> = new Subject();
+  isBelowCapacity$:Subject<boolean> = new Subject();
   parkings:Parking[];
   parkCapacity:number = 10;
   
@@ -18,10 +19,28 @@ export class ParkingService {
   addParking (parking:Parking) {}
 
   endParking () {}
+
+  filterActiveParkings ():Parking[] {
+    const activeParkings = this.parkings.filter(filter => {
+      return filter.active;
+    })
+
+    return activeParkings;
+  }
   
   getActiveParkings () {
-
+    return this.activeParkings$;
   }
 
-  isBelowCapacity () {}
+  getIsBelowCapacity () {
+    return this.isBelowCapacity$;
+  }
+
+  isBelowCapacity () {
+    const activeParkings = this.filterActiveParkings();
+
+    const isBelowCapacity = activeParkings.length < this.parkCapacity;
+
+    this.isBelowCapacity$.next(isBelowCapacity);
+  }
 }
