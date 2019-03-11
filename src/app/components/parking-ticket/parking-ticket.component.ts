@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Parking } from 'src/app/models/parking';
 
@@ -9,11 +9,20 @@ import { Parking } from 'src/app/models/parking';
 })
 export class ParkingTicketComponent implements OnInit {
 
-  @Input('parking') parking:Parking
+  @Input('parking') parking:Parking;
+  @Output('ticketClosed') ticketClosed:EventEmitter<boolean> = new EventEmitter();
   
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit ():void {
+  }
+
+  hideTicket ():void {
+    this.ticketClosed.emit(true);
+  }
+
+  printTicket ():void {
+    this.hideTicket();
   }
 
 }
