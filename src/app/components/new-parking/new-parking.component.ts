@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ParkingService } from 'src/app/services/parking.service';
 import { Subscription } from 'rxjs';
+
+import { ParkingService } from 'src/app/services/parking.service';
+import { Parking } from 'src/app/models/parking';
 
 @Component({
   selector: 'new-parking',
@@ -13,6 +15,7 @@ export class NewParkingComponent implements OnInit {
   formVisible:boolean;
   isBelowCapacity:boolean;
   isBelowCapacity$:Subscription;
+  parking:Parking
   ticketVisible:boolean;
   
   constructor(private parkingService:ParkingService) { }
@@ -31,7 +34,8 @@ export class NewParkingComponent implements OnInit {
     this.ticketVisible = false;
   }
 
-  onFormSaved () {
+  onFormSaved (parking:Parking) {
+    this.parking = parking
     this.formVisible = false;
     this.ticketVisible = true;
   }
