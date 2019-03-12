@@ -20,6 +20,7 @@ export class ActiveParkingsComponent implements OnInit {
   faSearch = faSearch;
   parkings:Parking[] = [];
   parkings$:Subscription;
+  searchExpression:string;
   
   constructor(private parkingService:ParkingService) { }
 
@@ -34,7 +35,19 @@ export class ActiveParkingsComponent implements OnInit {
   }
 
   endParking (id:number) {
-    this.parkingService.endParking(id)
+    this.parkingService.endParking(id);
+  }
+
+  orderAscending (type:string):void {
+    this.parkings = this.parkingService.orderAscending(type); 
+  }
+
+  orderDescending (type:string):void {
+    this.parkings = this.parkingService.orderDescending(type); 
+  }
+
+  search ():void {
+    this.parkings = this.parkingService.search(this.searchExpression); 
   }
 
 }
