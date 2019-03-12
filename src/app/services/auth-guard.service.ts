@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { GuardService } from './guard.service';
 
 @Injectable({
@@ -10,11 +13,17 @@ export class AuthGuardService implements CanActivate {
 
   constructor(private guardService:GuardService, private router:Router) { }
 
-  canActivate ():boolean {
-    let canActivate = this.guardService.getCurrentGuard() !== null;
-    if (!canActivate) {
-      this.router.navigate(['/']);
-    }
-    return canActivate;
+  canActivate ():Observable<boolean> {
+    return this.guardService.getCurrentGuard()
+        .pipe(
+          switchMap((guard) => {
+            if (guard !== null) {
+              return of(true)
+            } else {
+              this.router.navigate(['/']);
+              return of(false)
+            }
+        })
+        )
   }
 }

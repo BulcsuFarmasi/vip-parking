@@ -2,6 +2,7 @@
   <p>
     <input type="search" placeholder="Keresés" [(ngModel)]="searchExpression">
     <button (click)="search()"><fa-icon [icon]="faSearch"></fa-icon></button>
+    <button (click)="clearSearch()"><fa-icon [icon]="faTimes"></fa-icon></button>
   </p>
   <table>
     <tr>

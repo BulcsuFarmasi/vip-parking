@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faChevronDown, faChevronUp, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { Subscription } from 'rxjs';
 
@@ -18,23 +18,29 @@ export class ActiveParkingsComponent implements OnInit {
   faChevronDown = faChevronDown;
   faChevronUp = faChevronUp;
   faSearch = faSearch;
+  faTimes = faTimes;
   parkings:Parking[] = [];
   parkings$:Subscription;
   searchExpression:string;
   
   constructor(private parkingService:ParkingService) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.parkings$ = this.parkingService.getActiveParkings().subscribe(parkings => {
       this.parkings = parkings;
     })
   }
 
-  ngOnDestroy () {
+  ngOnDestroy ():void {
     this.parkings$.unsubscribe();
   }
 
-  endParking (id:number) {
+  clearSearch ():void {
+    this.searchExpression = '';
+    this.search();
+  }
+
+  endParking (id:number):void {
     this.parkingService.endParking(id);
   }
 
