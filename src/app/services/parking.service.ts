@@ -56,4 +56,53 @@ export class ParkingService {
 
     this.isBelowCapacity$.next(isBelowCapacity);
   }
+
+  isIncludingSearchExpression(searchExpression:string) {
+    return (parking:Parking) => {
+      if (parking.name.toLowerCase().includes(searchExpression) || parking.email.toLowerCase().includes(searchExpression) || 
+          parking.licenceNumber.toLowerCase().includes(searchExpression)) {
+        return true;
+      }
+    }
+  }
+
+  orderAscending (type:string):Parking[] {
+    const parkings = this.filterActiveParkings();
+
+    return parkings.sort((a, b) => {
+      if (a[type] < b[type]) {
+        return -1;
+      }
+      if (a[type] > b[type]) {
+        return 1
+      }
+      return 0
+    });
+  }
+
+  orderDescending (type:string):Parking[] {
+    const parkings = this.filterActiveParkings();
+
+    return parkings.sort((a, b) => {
+      if (a[type] > b[type]) {
+        return -1;
+      }
+      if (a[type] < b[type]) {
+        return 1
+      }
+      return 0
+    });
+  }
+
+  search (searchExpression:string):Parking[] {
+    let parkings = this.filterActiveParkings();
+
+    if (!searchExpression) {
+      return parkings;
+    }
+
+    searchExpression = searchExpression.toLowerCase();
+
+    return parkings.filter(this.isIncludingSearchExpression(searchExpression))
+  }
 }
