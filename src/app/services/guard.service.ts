@@ -7,6 +7,7 @@ import { Guard } from '../models/guard';
 })
 export class GuardService {
 
+  commissionRate:number = .1;
   currentGuard:Guard|null = null;
   guards:Guard[] = [
     {id: 1, name: 'Attila', commission: 0},
@@ -18,7 +19,14 @@ export class GuardService {
   
   constructor() { }
 
-  addCommissionToCurrentGuard (commission:number) {}
+  addCommissionToCurrentGuard (commission:number) {
+    this.currentGuard.commission += commission;
+    console.log(this.currentGuard, this.guards);
+  }
+
+  calculateCommission (parkingFee:number) {
+    return parkingFee * this.commissionRate;
+  }
   
   getCurrentGuard ():Guard {
     return this.currentGuard;

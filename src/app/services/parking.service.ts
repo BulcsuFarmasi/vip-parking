@@ -4,6 +4,7 @@ import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 
 import { Parking } from '../models/parking';
 import { CashRegisterService } from './cash-register.service';
+import { GuardService } from './guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ParkingService {
   isBelowCapacity$:Subject<boolean> = new ReplaySubject();
   parkCapacity:number = 10;
   
-  constructor(private cashRegisterService:CashRegisterService) { }
+  constructor(private cashRegisterService:CashRegisterService, private guardService:GuardService) { }
 
   addParking (parking:Parking) {
     
@@ -35,6 +36,10 @@ export class ParkingService {
       const parkingFee = hoursParked * this.parkingHourlyRate;
 
       this.cashRegisterService.addToCashRegister(parkingFee);
+      
+      const commission = this.guardService.calculateCommission(parkingFee);
+      this.guardService.addCommissionToCurrentGuard(commission);
+
   }
 
   endParking (id:number) {
