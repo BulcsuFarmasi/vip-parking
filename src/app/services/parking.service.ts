@@ -14,7 +14,7 @@ export class ParkingService {
   parkings:Parking[] = [];
   parkingHourlyRate = 500;
   activeParkings:Subject<Parking[]> = new BehaviorSubject(this.parkings);
-  isBelowCapacity$:Subject<boolean> = new ReplaySubject();
+  isBelowCapacitySubject:Subject<boolean> = new ReplaySubject();
   parkCapacity:number = 10;
   
   constructor(private cashRegisterService:CashRegisterService, private guardService:GuardService) { }
@@ -27,6 +27,7 @@ export class ParkingService {
     this.parkings.push(parking);
 
     this.activeParkings.next(this.filterActiveParkings());
+    this.updateIsBelowCapacity();
   }
 
   calculateParkingFee (parking:Parking) {
@@ -66,16 +67,16 @@ export class ParkingService {
   }
 
   getIsBelowCapacity () {
-    this.isBelowCapacity();
-    return this.isBelowCapacity$;
+    this.updateIsBelowCapacity();
+    return this.isBelowCapacitySubject;
   }
 
-  isBelowCapacity () {
+  updateIsBelowCapacity () {
     const activeParkings = this.filterActiveParkings();
 
     const isBelowCapacity = activeParkings.length < this.parkCapacity;
 
-    this.isBelowCapacity$.next(isBelowCapacity);
+    this.isBelowCapacitySubject.next(isBelowCapacity);
   }
 
   isIncludingSearchExpression(searchExpression:string) {
