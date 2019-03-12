@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Guard } from '../models/guard';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class GuardService {
 
   commissionRate:number = .1;
   currentGuard:Guard|null = null;
+  currentGuardSubject:BehaviorSubject<Guard|null> = new BehaviorSubject(this.currentGuard);
   guards:Guard[] = [
     {id: 1, name: 'Attila', commission: 0},
     {id: 2, name: 'Bálint', commission: 0},
@@ -21,15 +23,15 @@ export class GuardService {
 
   addCommissionToCurrentGuard (commission:number) {
     this.currentGuard.commission += commission;
-    console.log(this.currentGuard, this.guards);
+    this.currentGuardSubject.next(this.currentGuard)
   }
 
   calculateCommission (parkingFee:number) {
     return parkingFee * this.commissionRate;
   }
   
-  getCurrentGuard ():Guard {
-    return this.currentGuard;
+  getCurrentGuard ():BehaviorSubject<Guard|null> {
+    return this.currentGuardSubject;
   }
 
   getGuards ():Guard[] {
@@ -38,6 +40,7 @@ export class GuardService {
 
   logOut ():void {
     this.currentGuard = null;
+    this.currentGuardSubject.next(this.currentGuard);
   }
 
   setCurrentGuard (id:number) {
@@ -47,6 +50,7 @@ export class GuardService {
     })
 
     this.currentGuard = this.guards[index];
+    this.currentGuardSubject.next(this.currentGuard);
   }
 
 }

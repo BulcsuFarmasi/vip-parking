@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 import { Guard } from 'src/app/models/guard';
 import { GuardService } from 'src/app/services/guard.service';
@@ -9,14 +11,21 @@ import { GuardService } from 'src/app/services/guard.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   guard:Guard
+  guard$:Subscription
   
   constructor(private guardService:GuardService, private router:Router) { }
 
   ngOnInit() {
-    this.guard = this.guardService.getCurrentGuard();
+    this.guard$ = this.guardService.getCurrentGuard().subscribe(guard => {
+      this.guard = guard;
+    });
+  }
+
+  ngOnDestroy () {
+    this.guard$.unsubscribe();
   }
 
   logOut () {
