@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 
 import { Parking } from '../models/parking';
+import { CashRegisterService } from './cash-register.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,12 @@ import { Parking } from '../models/parking';
 export class ParkingService {
 
   parkings:Parking[] = [];
+  parkingHourlyRate = 500;
   activeParkings:Subject<Parking[]> = new BehaviorSubject(this.parkings);
   isBelowCapacity$:Subject<boolean> = new ReplaySubject();
   parkCapacity:number = 10;
   
-  constructor() { }
+  constructor(private cashRegisterService:CashRegisterService) { }
 
   addParking (parking:Parking) {
     
@@ -26,12 +28,26 @@ export class ParkingService {
     this.activeParkings.next(this.filterActiveParkings());
   }
 
+  calculateParkingFee (parking:Parking) {
+      const oneHour = 60 * 60 * 1000;
+      const hoursParked = Math.ceil((parking.endTime.getTime() - parking.startTime.getTime()) / oneHour);
+
+      const parkingFee = hoursParked * this.parkingHourlyRate;
+
+      this.cashRegisterService.addToCashRegister(parkingFee);
+  }
+
   endParking (id:number) {
       const index = this.parkings.findIndex(parking => parking.id === id);
 
-      this.parkings[index].active = false;
+      const parking = this.parkings[index]
+      
+      parking.active = false;
+      parking.endTime = new Date();
 
-      this.activeParkings.next(this.filterActiveParkings());
+      this.calculateParkingFee(parking);
+      
+    this.activeParkings.next(this.filterActiveParkings());
   }
 
   filterActiveParkings ():Parking[] {
