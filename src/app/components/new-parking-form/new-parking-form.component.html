@@ -8,7 +8,7 @@
           <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" ngModel>
       </p>
     <p>
-        <input type="text" name="startTime" placeholder="Érkezés ideje" ngModel> 
+        <p-calendar name="startTime" placeholder="Érkezés ideje" ngModel dateFormat="yy-mm-dd" showTime="true" showButtonBar="true" [locale]="hu"></p-calendar>
     </p>
     <p>
         <input type="text" #licenceNumber="ngModel" name="licenceNumber" placeholder="Rendszám" ngModel>

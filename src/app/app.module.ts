@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CalendarModule } from 'primeng/calendar';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -35,8 +38,10 @@ import { NewParkingFormComponent } from './components/new-parking-form/new-parki
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     FontAwesomeModule,
+    CalendarModule,
     QRCodeModule,
     AppRoutingModule
   ],

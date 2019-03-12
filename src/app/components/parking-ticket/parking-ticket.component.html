@@ -3,7 +3,7 @@
   <p><button (click)="hideTicket()">Bezárás</button></p>
   <p>Név: <strong>{{ parking.name }}</strong></p>
   <p>E-mail cím: <strong>{{ parking.email }}</strong></p>
-  <p>Érkezés: <strong>{{ parking.startTime }}</strong></p>
+  <p>Érkezés: <strong>{{ parking.startTime | date:'yyyy-MM-dd HH:mm:ss' }}</strong></p>
   <p>Rendszám: <strong>{{ parking.licenceNumber }}</strong></p>
   <qrcode [qrdata]="parking.licenceNumber"></qrcode>
   <button (click)="printTicket()">Nyomtatás</button>
