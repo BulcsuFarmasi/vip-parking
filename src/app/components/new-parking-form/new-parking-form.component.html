@@ -1,20 +1,32 @@
 <div class="modal">
   <h2>Új Parkolás</h2>
   <form #form="ngForm" (ngSubmit)="saveParking(form)">
+      <p class="error">Az össze mező kötelző</p>
       <p>
-          <input type="text"  #name="ngModel"  name="name" placeholder="Név" ngModel>
+          <input type="text"  #name="ngModel"  name="name" placeholder="Név" required ngModel [class.error]="name.errors && name.touched"><br>
+          <ng-container *ngIf="name.errors && name.touched">
+            <span *ngIf="name.errors.required" class="error">A nevet kötelző kitölteni</span>
+          </ng-container>
       </p>
       <p>
-          <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" ngModel>
+          <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" required ngModel><br>
+          <ng-container *ngIf="email.errors && email.touched">
+            <span *ngIf="email.errors.required" class="error">Az e-mail címet kötelző kitölteni</span>
+          </ng-container>
       </p>
     <p>
-        <p-calendar name="startTime" placeholder="Érkezés ideje" ngModel dateFormat="yy-mm-dd" showTime="true" showButtonBar="true" [locale]="hu"></p-calendar>
+        <p-calendar name="startTime" #startTime="ngModel" placeholder="Érkezés ideje" ngModel dateFormat="yy-mm-dd" showTime="true" showButtonBar="true" [locale]="hu" required></p-calendar><br>
+        <span *ngIf="startTime.touched && startTime.errors.required" class="error">Az érkezés idejét kötelző kitölteni</span>
     </p>
     <p>
-        <input type="text" #licenceNumber="ngModel" name="licenceNumber" placeholder="Rendszám" ngModel>
+        <input type="text" #licenceNumber="ngModel" name="licenceNumber" placeholder="Rendszám" required ngModel><br>
+        <ng-container *ngIf="licenceNumber.errors && licenceNumber.touched">
+            <span *ngIf="licenceNumber.errors.required" class="error">A rendszámot kötelző kitölteni</span>
+        </ng-container>
     </p>
+    <p *ngIf="form.touched && form.invalid">Az űrlap hibás, kérlek ellenőrizd a mezőket!</p>
     <p>
-      <button type="submit">Parkolás kezdése</button>
+      <button type="submit" [disabled]="form.invalid">Parkolás kezdése</button>
     </p>
   </form>
 </div>
