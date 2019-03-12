@@ -11,6 +11,8 @@ import { GuardService } from './guard.service';
 })
 export class ParkingService {
 
+  currentDay:Date;
+  dailyStatsSubject:ReplaySubject<number[]> = new ReplaySubject();
   parkings:Parking[] = [];
   parkingHourlyRate = 500;
   stats:Map<Date,number[]> = new Map();
@@ -28,18 +30,30 @@ export class ParkingService {
     this.parkings.push(parking);
 
     this.activeParkings.next(this.filterActiveParkings());
+    this.addToStats(parking);
     this.updateIsBelowCapacity();
   }
 
+  addToStats (parking):void {
+      const parkingCopy = Object.assign({}, parking);
+      const parkingMidnight = new Date(parkingCopy);
+      console.log(parking);
+  }
+
+  getDailyStats ():ReplaySubject<number[]> {
+    return this.dailyStatsSubject;
+  }
+
   getStats (day:Date) {
+    this.currentDay = day;
     if(!this.stats.has(day)) {
       let dailyStats = [];
       for (let i = 0; i < 24; i++) {
-        dailyStats.push(Math.round(Math.random()*20))
+        dailyStats.push(0)
       }
       this.stats.set(day, dailyStats);
     }
-    return this.stats.get(day);
+    return this.dailyStatsSubject.next(this.stats.get(day));
   }
 
   calculateParkingFee (parking:Parking) {

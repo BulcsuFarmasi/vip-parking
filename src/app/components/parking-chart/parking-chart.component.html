@@ -1,8 +1,9 @@
 <p>
-  <fa-icon [icon]="faChevronLeft" (click)="decreaseDay()"></fa-icon> 
-  {{ currentDate | date:'yyyy-MM-dd' }}
-  <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDate.getTime() !== today.getTime()"></fa-icon> 
+  <fa-icon [icon]="faChevronLeft" (click)="decreaseDay()"></fa-icon>  
+  {{ currentDay | date:'yyyy-MM-dd' }}
+  <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDay.getTime() !== today.getTime()"></fa-icon>  
 </p>
+<p>{{ dailyStats | json }}</p>
 <!-- <div>
   <canvas
     baseChart

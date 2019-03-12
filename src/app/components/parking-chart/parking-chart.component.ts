@@ -35,9 +35,13 @@ export class ParkingChartComponent implements OnInit {
   constructor(private parkingService:ParkingService) { }
 
   ngOnInit():void {
+    this.currentDay.setHours(0,0,0,0);
+    this.today.setHours(0,0,0,0)
     this.dailyStats$ = this.parkingService.getDailyStats().subscribe(dailyStats => {
       this.dailyStats = dailyStats;
+      console.log(dailyStats);
     })
+    console.log(this.today, this.currentDay);
     this.parkingService.getStats(this.currentDay);
   }
 
