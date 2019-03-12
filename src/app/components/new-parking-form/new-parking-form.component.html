@@ -1,27 +1,68 @@
 <div class="modal">
   <h2>Új Parkolás</h2>
   <form #form="ngForm" (ngSubmit)="saveParking(form)">
-      <p class="error">Az össze mező kötelző</p>
+      <p class="error">Az összes mező kötelző</p>
       <p>
-          <input type="text"  #name="ngModel"  name="name" placeholder="Név" required ngModel [class.error]="name.errors && name.touched"><br>
+          <input 
+              type="text"  
+              #name="ngModel"  
+              name="name" 
+              placeholder="Név" 
+              required
+              maxlength="100" 
+              ngModel 
+              [class.error]="name.errors && name.touched">
+          <br>
           <ng-container *ngIf="name.errors && name.touched">
             <span *ngIf="name.errors.required" class="error">A nevet kötelző kitölteni</span>
+            <span *ngIf="name.errors.maxlength" class="error">A Név nem lehet hosszabb {{ name.errors.maxlength.requiredLength }} karakternél</span>
           </ng-container>
       </p>
       <p>
-          <input type="email" #email="ngModel"  name="email" placeholder="E-mail cím" required ngModel><br>
+          <input 
+              type="email" 
+              #email="ngModel" 
+              name="email" 
+              placeholder="E-mail cím" 
+              required
+              [pattern]="emailPattern" 
+              ngModel 
+              [class.error]="email.errors && email.touched">
+          <br>
           <ng-container *ngIf="email.errors && email.touched">
             <span *ngIf="email.errors.required" class="error">Az e-mail címet kötelző kitölteni</span>
+            <span *ngIf="email.errors.pattern" class="error">Csak érvényes e-mail cím írható be! (Pl: valaki@domain.hu)</span>
           </ng-container>
       </p>
     <p>
-        <p-calendar name="startTime" #startTime="ngModel" placeholder="Érkezés ideje" ngModel dateFormat="yy-mm-dd" showTime="true" showButtonBar="true" [locale]="hu" required></p-calendar><br>
+        <p-calendar 
+            #startTime="ngModel" 
+            name="startTime" 
+            placeholder="Érkezés ideje" 
+            required 
+            ngModel
+            [class.error]="name.errors && name.touched" 
+            dateFormat="yy-mm-dd" 
+            showTime="true"
+            [locale]="hu">
+          </p-calendar>
+        <br>
         <span *ngIf="startTime.touched && startTime.errors.required" class="error">Az érkezés idejét kötelző kitölteni</span>
     </p>
     <p>
-        <input type="text" #licenceNumber="ngModel" name="licenceNumber" placeholder="Rendszám" required ngModel><br>
+        <input 
+            type="text" 
+            #licenceNumber="ngModel" 
+            name="licenceNumber" 
+            placeholder="Rendszám" 
+            required
+            [pattern]="licenceNumberPattern" 
+            ngModel 
+            [class.error]="licenceNumber.errors && licenceNumber.touched">
+        <br>
         <ng-container *ngIf="licenceNumber.errors && licenceNumber.touched">
             <span *ngIf="licenceNumber.errors.required" class="error">A rendszámot kötelző kitölteni</span>
+            <span *ngIf="licenceNumber.errors.pattern" class="error">Csak magyar formátumú rendszám irható be! (Pl: ABC-123, ABCD-12, ABCDE-1)</span>
         </ng-container>
     </p>
     <p *ngIf="form.touched && form.invalid">Az űrlap hibás, kérlek ellenőrizd a mezőket!</p>
