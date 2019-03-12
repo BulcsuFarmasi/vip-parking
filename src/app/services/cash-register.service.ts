@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import { CashRegister } from '../models/cash-register';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CashRegisterService {
 
-  cashRegisterStatus:number = 0
-  cashRegisterSubject:BehaviorSubject<number> = new BehaviorSubject(this.cashRegisterStatus); 
+  cashRegister:CashRegister = {
+    amount: 0
+  };
+  cashRegisterSubject:BehaviorSubject<CashRegister> = new BehaviorSubject(this.cashRegister); 
   
   constructor() { }
 
-  addToCashRegister (amount:number):void {}
+  addToCashRegister (amount:number):void {
+    this.cashRegister.amount += amount;
+    this.cashRegisterSubject.next(this.cashRegister);
+  }
 
-  getCashRegister () {}
+  getCashRegister ():BehaviorSubject<CashRegister> {
+    return this.cashRegisterSubject;
+  }
 
 }
