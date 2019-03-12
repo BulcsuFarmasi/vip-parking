@@ -21,8 +21,4 @@ export class ParkingTicketComponent implements OnInit {
     this.ticketClosed.emit(true);
   }
 
-  printTicket ():void {
-    this.hideTicket();
-  }
-
 }

@@ -11,6 +11,8 @@ import { ChartsModule } from 'ng2-charts';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { NgxPrintModule } from 'ngx-print';
+
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,9 +48,10 @@ registerLocaleData(localeHu);
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    CalendarModule,
     ChartsModule,
     FontAwesomeModule,
-    CalendarModule,
+    NgxPrintModule, 
     QRCodeModule,
     AppRoutingModule
   ],
