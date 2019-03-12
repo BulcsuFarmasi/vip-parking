@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CalendarModule } from 'primeng/calendar';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { QRCodeModule } from 'angularx-qrcode';
@@ -44,6 +46,7 @@ registerLocaleData(localeHu);
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ChartsModule,
     FontAwesomeModule,
     CalendarModule,
     QRCodeModule,
