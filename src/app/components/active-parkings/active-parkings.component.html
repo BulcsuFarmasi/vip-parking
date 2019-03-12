@@ -1,15 +1,31 @@
 <div class="active-parkings">
   <p>
-    <input type="search" placeholder="Keresés">
-    <button>Keresés</button>
+    <input type="search" placeholder="Keresés" [(ngModel)]="searchExpression">
+    <button (click)="search()"><fa-icon [icon]="faSearch"></fa-icon></button>
   </p>
   <table>
     <tr>
-      <th>Νév</th>
-      <th>E-mail cím</th>
-      <th>Érkezés</th>
-      <th>Rendszám</th>
-      <th>Lezárárs</th>
+      <th>
+        Νév<br>
+        <fa-icon [icon]="faChevronDown" (click)="orderDescending('name')"></fa-icon>
+        <fa-icon [icon]="faChevronUp" (click)="orderAscending('name')"></fa-icon>
+      </th>
+      <th>
+        E-mail cím<br>
+        <fa-icon [icon]="faChevronDown" (click)="orderDescending('email')"></fa-icon>
+        <fa-icon [icon]="faChevronUp" (click)="orderAscending('email')"></fa-icon>
+      </th>
+      <th>
+        Érkezés<br>
+        <fa-icon [icon]="faChevronDown" (click)="orderDescending('startTime')"></fa-icon>
+        <fa-icon [icon]="faChevronUp" (click)="orderAscending('startTime')"></fa-icon>
+      </th>
+      <th>
+        Rendszám<br>
+        <fa-icon [icon]="faChevronDown" (click)="orderDescending('licenceNumber')"></fa-icon>
+        <fa-icon [icon]="faChevronUp" (click)="orderAscending('licenceNumber')"></fa-icon>
+      </th>
+      <th>Lezárás</th>
     </tr>
     <tr *ngFor="let parking of parkings">
       <td>{{ parking.name }}</td>

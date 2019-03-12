@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { faChevronDown, faChevronUp, faSearch } from '@fortawesome/free-solid-svg-icons';
+
 import { Subscription } from 'rxjs';
 
 import { Parking } from 'src/app/models/parking';
@@ -12,6 +14,10 @@ import { ParkingService } from 'src/app/services/parking.service';
 })
 export class ActiveParkingsComponent implements OnInit {
 
+  
+  faChevronDown = faChevronDown;
+  faChevronUp = faChevronUp;
+  faSearch = faSearch;
   parkings:Parking[] = [];
   parkings$:Subscription;
   
