@@ -5,6 +5,7 @@ import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { Parking } from '../models/parking';
 import { CashRegisterService } from './cash-register.service';
 import { GuardService } from './guard.service';
+import { Stats } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ParkingService {
 
   parkings:Parking[] = [];
   parkingHourlyRate = 500;
+  stats:Map<Date,number[]> = new Map();
   activeParkings:Subject<Parking[]> = new BehaviorSubject(this.parkings);
   isBelowCapacitySubject:Subject<boolean> = new ReplaySubject();
   parkCapacity:number = 10;
@@ -28,6 +30,17 @@ export class ParkingService {
 
     this.activeParkings.next(this.filterActiveParkings());
     this.updateIsBelowCapacity();
+  }
+
+  getStats (day:Date) {
+    if(!this.stats.has(day)) {
+      let dailyStats = [];
+      for (let i = 0; i < 24; i++) {
+        dailyStats.push(Math.round(Math.random()*20))
+      }
+      this.stats.set(day, dailyStats);
+    }
+    return this.stats.get(day);
   }
 
   calculateParkingFee (parking:Parking) {
@@ -53,7 +66,8 @@ export class ParkingService {
 
       this.calculateParkingFee(parking);
       
-    this.activeParkings.next(this.filterActiveParkings());
+      this.activeParkings.next(this.filterActiveParkings());
+      this.updateIsBelowCapacity();
   }
 
   filterActiveParkings ():Parking[] {
