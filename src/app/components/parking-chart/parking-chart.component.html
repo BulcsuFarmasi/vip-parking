@@ -1,3 +1,15 @@
 <p>
-  parking-chart works!
+  <fa-icon [icon]="faChevronLeft" (click)="decreaseDay()"></fa-icon> 
+  {{ currentDate | date:'yyyy-MM-dd' }}
+  <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDate.getTime() !== today.getTime()"></fa-icon> 
 </p>
+<!-- <div>
+  <canvas
+    baseChart
+    [chartType]="chartType"
+    [datasets]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [legend]="true">
+  </canvas>
+</div> -->

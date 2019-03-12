@@ -5,7 +5,6 @@ import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { Parking } from '../models/parking';
 import { CashRegisterService } from './cash-register.service';
 import { GuardService } from './guard.service';
-import { Stats } from 'fs';
 
 @Injectable({
   providedIn: 'root'
