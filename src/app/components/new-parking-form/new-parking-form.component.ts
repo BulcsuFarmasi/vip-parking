@@ -13,16 +13,18 @@ import { ParkingService } from 'src/app/services/parking.service';
 export class NewParkingFormComponent implements OnInit {
   
   hu = hu;
-  emailPattern = /^[a-zA-Z0-9!#$&_*?^{}~-]+(\.?[a-zA-Z0-9!#$&_*?^{}~-])*@([a-z0-9]+([a-z0-9-]*)\.)+[a-zA-Z]+$/g
+  emailPattern = /^[a-zA-Z0-9!#$&_*?^{}~-]+(\.?[a-zA-Z0-9!#$&_*?^{}~-])*@([a-z0-9]+([a-z0-9-]*)\.)+[a-zA-Z]+$/
   licencePlatePattern = /^(([A-Z]{3}\-\d{3})|([A-Z]{4}\-\d{2})|([A-Z]{5}\-\d))$/g
 
   @Output('formSaved') formSaved:EventEmitter<Parking> = new EventEmitter();
   
   constructor(private parkingService:ParkingService) { }
 
-  ngOnInit() {}
+  ngOnInit():void {
+    
+  }
 
-  saveParking (form:NgForm) {
+  saveParking (form:NgForm):void {
       this.parkingService.addParking(form.value);
       this.formSaved.emit(form.value);
   }

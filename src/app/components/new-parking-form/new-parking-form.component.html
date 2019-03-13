@@ -14,8 +14,8 @@
               [class.error]="name.errors && name.touched">
           <br>
           <ng-container *ngIf="name.errors && name.touched">
-            <span *ngIf="name.errors.required" class="error">A nevet kötelző kitölteni</span>
-            <span *ngIf="name.errors.maxlength" class="error">A Név nem lehet hosszabb {{ name.errors.maxlength.requiredLength }} karakternél</span>
+            <span *ngIf="name.errors?.required" class="error">A nevet kötelző kitölteni</span>
+            <span *ngIf="name.errors?.maxlength" class="error">A Név nem lehet hosszabb {{ name.errors.maxlength.requiredLength }} karakternél</span>
           </ng-container>
       </p>
       <p>
@@ -30,8 +30,8 @@
               [class.error]="email.errors && email.touched">
           <br>
           <ng-container *ngIf="email.errors && email.touched">
-            <span *ngIf="email.errors.required" class="error">Az e-mail címet kötelző kitölteni</span>
-            <span *ngIf="email.errors.pattern" class="error">Csak érvényes e-mail cím írható be! (Pl: valaki@domain.hu)</span>
+            <span *ngIf="email.errors?.required" class="error">Az e-mail címet kötelző kitölteni</span>
+            <span *ngIf="email.errors?.pattern" class="error">Csak érvényes e-mail cím írható be! (Pl: valaki@domain.hu)</span>
           </ng-container>
       </p>
     <p>
@@ -46,7 +46,7 @@
             [locale]="hu">
           </p-calendar>
         <br>
-        <span *ngIf="startTime.touched && startTime.errors.required" class="error">Az érkezés idejét kötelző kitölteni</span>
+        <span *ngIf="startTime.touched && startTime.errors?.required" class="error">Az érkezés idejét kötelző kitölteni</span>
     </p>
     <p>
         <input 
@@ -60,12 +60,11 @@
             [class.error]="licencePlate.errors && licencePlate.touched">
         <br>
         <ng-container *ngIf="licencePlate.errors && licencePlate.touched">
-            <span *ngIf="licencePlate.errors.required" class="error">A rendszámot kötelző kitölteni</span>
-            <span *ngIf="licencePlate.errors.pattern" class="error">Csak magyar formátumú rendszám irható be! (Pl: ABC-123, ABCD-12, ABCDE-1)</span>
+            <span *ngIf="licencePlate.errors?.required" class="error">A rendszámot kötelző kitölteni</span>
+            <span *ngIf="licencePlate.errors?.pattern" class="error">Csak magyar formátumú rendszám irható be! (Pl: ABC-123, ABCD-12, ABCDE-1)</span>
         </ng-container>
-    </p>
-    <p *ngIf="form.touched && form.invalid">Az űrlap hibás, kérlek ellenőrizd a mezőket!</p>
-    <p>
+      </p>
+    <p> 
       <button type="submit" [disabled]="form.invalid">Parkolás kezdése</button>
     </p>
   </form>
