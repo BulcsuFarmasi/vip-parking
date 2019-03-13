@@ -23,8 +23,8 @@
       </th>
       <th>
         Rendszám<br>
-        <fa-icon [icon]="faChevronDown" (click)="orderDescending('licenceNumber')"></fa-icon>
-        <fa-icon [icon]="faChevronUp" (click)="orderAscending('licenceNumber')"></fa-icon>
+        <fa-icon [icon]="faChevronDown" (click)="orderDescending('licencePlate')"></fa-icon>
+        <fa-icon [icon]="faChevronUp" (click)="orderAscending('licencePlate')"></fa-icon>
       </th>
       <th>Lezárás</th>
     </tr>
@@ -32,7 +32,7 @@
       <td>{{ parking.name }}</td>
       <td>{{ parking.email }}</td>
       <td>{{ parking.startTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-      <td>{{ parking.licenceNumber }}</td>
+      <td>{{ parking.licencePlate }}</td>
       <td><button (click)="endParking(parking.id)">Lezárás</button></td>
     </tr>
   </table>

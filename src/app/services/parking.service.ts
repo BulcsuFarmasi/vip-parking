@@ -109,7 +109,7 @@ export class ParkingService {
   isIncludingSearchExpression(searchExpression:string) {
     return (parking:Parking) => {
       if (parking.name.toLowerCase().includes(searchExpression) || parking.email.toLowerCase().includes(searchExpression) || 
-          parking.licenceNumber.toLowerCase().includes(searchExpression)) {
+          parking.licencePlate.toLowerCase().includes(searchExpression)) {
         return true;
       }
     }

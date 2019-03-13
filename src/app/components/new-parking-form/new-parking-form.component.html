@@ -38,8 +38,7 @@
         <p-calendar 
             #startTime="ngModel" 
             name="startTime" 
-            placeholder="Érkezés ideje" 
-            required 
+            placeholder="Érkezés ideje"  
             ngModel
             [class.error]="name.errors && name.touched" 
             dateFormat="yy-mm-dd" 
@@ -52,17 +51,17 @@
     <p>
         <input 
             type="text" 
-            #licenceNumber="ngModel" 
-            name="licenceNumber" 
+            #licencePlate="ngModel" 
+            name="licencePlate" 
             placeholder="Rendszám" 
             required
-            [pattern]="licenceNumberPattern" 
+            [pattern]="licencePlatePattern" 
             ngModel 
-            [class.error]="licenceNumber.errors && licenceNumber.touched">
+            [class.error]="licencePlate.errors && licencePlate.touched">
         <br>
-        <ng-container *ngIf="licenceNumber.errors && licenceNumber.touched">
-            <span *ngIf="licenceNumber.errors.required" class="error">A rendszámot kötelző kitölteni</span>
-            <span *ngIf="licenceNumber.errors.pattern" class="error">Csak magyar formátumú rendszám irható be! (Pl: ABC-123, ABCD-12, ABCDE-1)</span>
+        <ng-container *ngIf="licencePlate.errors && licencePlate.touched">
+            <span *ngIf="licencePlate.errors.required" class="error">A rendszámot kötelző kitölteni</span>
+            <span *ngIf="licencePlate.errors.pattern" class="error">Csak magyar formátumú rendszám irható be! (Pl: ABC-123, ABCD-12, ABCDE-1)</span>
         </ng-container>
     </p>
     <p *ngIf="form.touched && form.invalid">Az űrlap hibás, kérlek ellenőrizd a mezőket!</p>

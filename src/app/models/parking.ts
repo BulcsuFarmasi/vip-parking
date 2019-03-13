@@ -4,6 +4,6 @@ export interface Parking {
     email:string;
     startTime:Date;
     endTime:Date;
-    licenceNumber:string;
+    licencePlate:string;
     active:boolean;
 }
