@@ -5,6 +5,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { Subscription } from 'rxjs';
 
 import { ParkingService } from 'src/app/services/parking.service';
+import { ParkingStatsService } from 'src/app/services/parking-stats.service';
 
 @Component({
   selector: 'parking-chart',
@@ -24,7 +25,7 @@ export class ParkingChartComponent implements OnInit {
   chartLabels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
   chartType = 'bar'
 
-  dailyStats:number[] = [];
+  dailyStats:[{data:number[], label:string}];
   dailyStats$:Subscription
 
   faChevronLeft = faChevronLeft;
@@ -32,17 +33,16 @@ export class ParkingChartComponent implements OnInit {
 
   today:Date = new Date();
   
-  constructor(private parkingService:ParkingService) { }
+  constructor(private parkingStatsService:ParkingStatsService) { }
 
   ngOnInit():void {
     this.currentDay.setHours(0,0,0,0);
-    this.today.setHours(0,0,0,0)
-    this.dailyStats$ = this.parkingService.getDailyStats().subscribe(dailyStats => {
-      this.dailyStats = dailyStats;
-      console.log(dailyStats);
+    this.today.setHours(0,0,0,0);
+    console.log(this.parkingStatsService.getDailyStats);
+    this.dailyStats$ = this.parkingStatsService.getDailyStats().subscribe(dailyStats => {
+      this.dailyStats = [{data: dailyStats, label:"Autók száma"}];
     })
-    console.log(this.today, this.currentDay);
-    this.parkingService.getStats(this.currentDay);
+    this.parkingStatsService.getStats(this.currentDay);
   }
 
   ngOnDestroy ():void {
@@ -51,12 +51,12 @@ export class ParkingChartComponent implements OnInit {
 
   decreaseDay () {
     this.currentDay = new Date(this.currentDay.setDate(this.currentDay.getDate() - 1));
-    this.parkingService.getStats(this.currentDay);
+    this.parkingStatsService.getStats(this.currentDay);
   }
 
   increaseDay () {
     this.currentDay = new Date(this.currentDay.setDate(this.currentDay.getDate() + 1));
-    this.parkingService.getStats(this.currentDay);
+    this.parkingStatsService.getStats(this.currentDay);
   }
 
 

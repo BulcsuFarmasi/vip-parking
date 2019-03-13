@@ -4,13 +4,13 @@
   <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDay.getTime() !== today.getTime()"></fa-icon>  
 </p>
 <p>{{ dailyStats | json }}</p>
-<!-- <div>
+<div>
   <canvas
     baseChart
     [chartType]="chartType"
-    [datasets]="chartData"
+    [datasets]="dailyStats"
     [labels]="chartLabels"
     [options]="chartOptions"
-    [legend]="true">
+    [legend]="false">
   </canvas>
-</div> -->
+</div> 
