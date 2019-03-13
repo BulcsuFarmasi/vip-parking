@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
+
+* {
+    font-family: 'Myriad Pro', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: $color-black url('./assets/images/bg.jpg') 0 0/100% no-repeat;
+}
+
+h1 {
+    color:$color-gold;
+    font-weight: lighter;
+    font-size: 4em;
+    margin-left:5%;
+}
+

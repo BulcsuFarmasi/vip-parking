@@ -5,7 +5,7 @@ import { Guard } from 'src/app/models/guard';
 import { GuardService } from 'src/app/services/guard.service';
 
 @Component({
-  selector: 'app-log-in',
+  selector: 'log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
