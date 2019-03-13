@@ -38,7 +38,8 @@
         <p-calendar 
             #startTime="ngModel" 
             name="startTime" 
-            placeholder="Érkezés ideje"  
+            placeholder="Érkezés ideje"
+            required  
             ngModel
             [class.error]="name.errors && name.touched" 
             dateFormat="yy-mm-dd" 
