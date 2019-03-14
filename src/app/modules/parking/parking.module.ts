@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { ChartsModule } from 'ng2-charts';
 
+import { NgxPrintModule } from 'ngx-print'
+
 import { CalendarModule } from 'primeng/calendar';
 
 import { ActiveParkingsComponent } from './components/active-parkings/active-parkings.component';
@@ -30,6 +32,7 @@ import { ParkingTicketComponent } from './components/parking-ticket/parking-tick
     CalendarModule,
     ChartsModule,
     FontAwesomeModule,
+    NgxPrintModule,
     QRCodeModule
   ],
   exports: [

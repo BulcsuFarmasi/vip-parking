@@ -4,8 +4,6 @@ import localeHu from '@angular/common/locales/hu'
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgxPrintModule } from 'ngx-print';
-
 import { AppComponent } from './components/app/app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
@@ -23,7 +21,6 @@ registerLocaleData(localeHu);
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgxPrintModule, 
     AppRoutingModule,
     CashRegisterModule,
     GuardModule,
