@@ -18,7 +18,6 @@ export class CashRegisterComponent implements OnInit, OnDestroy {
   constructor(private cashRegisterService:CashRegisterService) { }
 
   ngOnInit() {
-    console.log(this.cashRegisterService.getCashRegister());
     this.cashRegister$ = this.cashRegisterService.getCashRegister().subscribe(cashRegister => {
       this.cashRegister = cashRegister;
     })

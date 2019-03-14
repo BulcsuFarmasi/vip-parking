@@ -38,7 +38,6 @@ export class ParkingChartComponent implements OnInit {
   ngOnInit():void {
     this.currentDay.setHours(0,0,0,0);
     this.today.setHours(0,0,0,0);
-    console.log(this.parkingStatsService.getDailyStats);
     this.dailyStats$ = this.parkingStatsService.getDailyStats().subscribe(dailyStats => {
       this.dailyStats = [{data: dailyStats, label:"Autók száma"}];
     })

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { hu } from './hu.locale';
 import { Parking } from 'src/app/models/parking';
 import { ParkingService } from 'src/app/services/parking.service';
+import { ParkingStatsService } from 'src/app/services/parking-stats.service';
 
 @Component({
   selector: 'new-parking-form',
@@ -18,7 +19,7 @@ export class NewParkingFormComponent implements OnInit {
 
   @Output('formSaved') formSaved:EventEmitter<Parking> = new EventEmitter();
   
-  constructor(private parkingService:ParkingService) { }
+  constructor(private parkingService:ParkingService, private parkingStatService:ParkingStatsService) { }
 
   ngOnInit():void {
     
@@ -26,6 +27,7 @@ export class NewParkingFormComponent implements OnInit {
 
   saveParking (form:NgForm):void {
       this.parkingService.addParking(form.value);
+      this.parkingStatService.addToStats(form.value)
       this.formSaved.emit(form.value);
   }
 

@@ -26,10 +26,42 @@ export class ParkingStatsService {
     })
   }
 
-  addToStats (parking):void {
-    const parkingCopy = Object.assign({}, parking);
-    const parkingMidnight = new Date(parkingCopy);
-    console.log(parking);
+  addToStats (parking:Parking):void {
+    const parkingStartTimeCopy = new Date(parking.startTime.getTime());
+    let startDay = new Date(parkingStartTimeCopy.setHours(0,0,0,0));
+    let day =  new Date(startDay.getTime());
+    const now = new Date();
+    
+    while (day.getTime() <= this.today.getTime()) {
+      
+      let startHour = (day.getTime() === startDay.getTime()) ? parking.startTime.getHours() : 0;
+      let endHour = (day.getTime() === this.today.getTime()) ? now.getHours() : 23;
+
+      let dailyStats:number[];
+      
+      if (this.stats.has(day.getTime())) {
+        dailyStats = this.stats.get(day.getTime());
+        dailyStats = dailyStats.map((parkingNumber, hour) => {
+          if (startHour <= hour && hour <= endHour) {
+            console.log(hour);
+            parkingNumber += 1;
+          }
+          return parkingNumber;
+        })
+        console.log(dailyStats);
+      } else {
+          dailyStats = [];
+          for(let i = 0; i <= 23; i++){
+            let parkingNumber = (startHour <= i && i <= endHour) ? 1 : 0;
+            dailyStats.push(parkingNumber);
+          }
+      }
+      console.log(dailyStats);
+      this.stats.set(day.getTime(), dailyStats);
+      console.log(this.stats.get(day.getTime()));
+      day = new Date(day.setDate(day.getDate() + 1));
+    };
+    this.dailyStatsSubject.next(this.stats.get(this.currentDay.getTime()));
   }
 
   getDailyStats ():ReplaySubject<number[]> {
@@ -51,8 +83,6 @@ export class ParkingStatsService {
 
   newHour () {
     const now = new Date();
-    console.log(now);
-    console.log(this.stats);
     if (now.getMinutes() === 0) {
       const dailyStat = this.stats.get(this.today.getTime());
       dailyStat[now.getHours()] = this.activeParkings.length;
