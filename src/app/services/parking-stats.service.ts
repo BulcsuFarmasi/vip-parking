@@ -43,12 +43,10 @@ export class ParkingStatsService {
         dailyStats = this.stats.get(day.getTime());
         dailyStats = dailyStats.map((parkingNumber, hour) => {
           if (startHour <= hour && hour <= endHour) {
-            console.log(hour);
             parkingNumber += 1;
           }
           return parkingNumber;
         })
-        console.log(dailyStats);
       } else {
           dailyStats = [];
           for(let i = 0; i <= 23; i++){
@@ -56,9 +54,7 @@ export class ParkingStatsService {
             dailyStats.push(parkingNumber);
           }
       }
-      console.log(dailyStats);
       this.stats.set(day.getTime(), dailyStats);
-      console.log(this.stats.get(day.getTime()));
       day = new Date(day.setDate(day.getDate() + 1));
     };
     this.dailyStatsSubject.next(this.stats.get(this.currentDay.getTime()));
