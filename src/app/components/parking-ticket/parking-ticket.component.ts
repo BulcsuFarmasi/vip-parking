@@ -9,7 +9,6 @@ import { Parking } from 'src/app/models/parking';
 })
 export class ParkingTicketComponent implements OnInit {
 
-  printStyle:string = '{button {display: none}}'
   @Input('parking') parking:Parking;
   @Output('ticketClosed') ticketClosed:EventEmitter<boolean> = new EventEmitter();
   
