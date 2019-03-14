@@ -10,6 +10,60 @@
 
 .amount {
     font-size: 2.5em;
+    margin-top: 20px;
+}
+
+.modal {
+    background-color: $color-yellow;
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -200px;
+    padding: 10px;
+    .error  {
+        color: $color-gold;
+        text-align: center
+    }
+
+    .close {
+        width: 50%;
+        margin-left:50%;
+    }
+
+    button, input {
+        width:100%;
+        border:none;
+        border-radius: 0;
+        padding: 10px;
+        font-size:1.2em;
+        &.error {
+            color:$color-black;
+            border: 1px solid $color-gold;
+        }
+    }
+    h2 {
+        text-align: center;
+    }
+
+    img {
+        margin: 0 auto;
+    }
+
+    p {
+        width: 95%;
+        margin:10px auto;
+        text-align: center;
+    }
+    
+    p-calendar {
+        display: block;
+        span {
+            display: block;
+            width: 100%;
+        }
+    }
 }
 
 body {

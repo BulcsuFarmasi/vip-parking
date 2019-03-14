@@ -1,10 +1,12 @@
-<p><button (click)="hideTicket()">Bezárás</button></p>
-<div class="modal" id="print">
-  <h2>Parkolójegy</h2>
-  <p>Név: <strong>{{ parking.name }}</strong></p>
-  <p>E-mail cím: <strong>{{ parking.email }}</strong></p>
-  <p>Érkezés: <strong>{{ parking.startTime | date:'yyyy-MM-dd HH:mm:ss' }}</strong></p>
-  <p>Rendszám: <strong>{{ parking.licencePlate }}</strong></p>
-  <qrcode [qrdata]="parking.licencePlate"></qrcode>
+<div class="modal">
+  <p><button (click)="hideTicket()" class="close">Bezárás</button></p>
+  <div id="print">
+    <h2>Parkolójegy</h2>
+    <p>Név: <strong>{{ parking.name }}</strong></p>
+    <p>E-mail cím: <strong>{{ parking.email }}</strong></p>
+    <p>Érkezés: <strong>{{ parking.startTime | date:'yyyy-MM-dd HH:mm:ss' }}</strong></p>
+    <p>Rendszám: <strong>{{ parking.licencePlate }}</strong></p>
+    <qrcode [qrdata]="parking.licencePlate"></qrcode>
+  </div>
+  <p><button (click)="hideTicket()" printSectionId="print" ngxPrint>Nyomtatás</button></p>
 </div>
-<button (click)="hideTicket()" printSectionId="print" ngxPrint>Nyomtatás</button>
