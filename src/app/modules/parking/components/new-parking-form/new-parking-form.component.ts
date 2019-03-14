@@ -8,8 +8,7 @@ import { ParkingStatsService } from 'src/app/services/parking-stats.service';
 
 @Component({
   selector: 'new-parking-form',
-  templateUrl: './new-parking-form.component.html',
-  styleUrls: ['./new-parking-form.component.scss']
+  templateUrl: './new-parking-form.component.html'
 })
 export class NewParkingFormComponent implements OnInit {
   

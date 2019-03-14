@@ -4,8 +4,7 @@ import { Parking } from 'src/app/models/parking';
 
 @Component({
   selector: 'parking-ticket',
-  templateUrl: './parking-ticket.component.html',
-  styleUrls: ['./parking-ticket.component.scss']
+  templateUrl: './parking-ticket.component.html'
 })
 export class ParkingTicketComponent implements OnInit {
 
