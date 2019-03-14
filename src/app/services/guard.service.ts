@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Guard } from '../models/guard';
 import { BehaviorSubject } from 'rxjs';
+
+import { Guard } from '../models/guard';
 
 @Injectable({
   providedIn: 'root'

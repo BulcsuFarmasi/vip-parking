@@ -4,7 +4,6 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import { Subscription } from 'rxjs';
 
-import { ParkingService } from 'src/app/services/parking.service';
 import { ParkingStatsService } from 'src/app/services/parking-stats.service';
 
 @Component({
