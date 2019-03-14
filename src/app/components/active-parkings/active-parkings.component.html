@@ -1,5 +1,5 @@
 <div class="active-parkings">
-  <p>
+  <p class="search">
     <input type="search" placeholder="Keresés" [(ngModel)]="searchExpression">
     <button (click)="search()"><fa-icon [icon]="faSearch"></fa-icon></button>
     <button (click)="clearSearch()"><fa-icon [icon]="faTimes"></fa-icon></button>
@@ -36,5 +36,5 @@
       <td><button (click)="endParking(parking.id)">Lezárás</button></td>
     </tr>
   </table>
-  <p *ngIf="parkings.length === 0">Jelenleg egy autó sem áll a parkolóban</p>
+  <p *ngIf="parkings.length === 0" class="no-parking">Jelenleg egy autó sem áll a parkolóban</p>
 </div>

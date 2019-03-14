@@ -1,16 +1,18 @@
-<p>
-  <fa-icon [icon]="faChevronLeft" (click)="decreaseDay()"></fa-icon>  
-  {{ currentDay | date:'yyyy-MM-dd' }}
-  <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDay.getTime() !== today.getTime()"></fa-icon>  
-</p>
-<p>{{ dailyStats | json }}</p>
-<div>
-  <canvas
-    baseChart
-    [chartType]="chartType"
-    [datasets]="dailyStats"
-    [labels]="chartLabels"
-    [options]="chartOptions"
-    [legend]="false">
-  </canvas>
+<div class="parking-chart">
+  <p class="date">
+    <fa-icon [icon]="faChevronLeft" (click)="decreaseDay()"></fa-icon>  
+    {{ currentDay | date:'yyyy-MM-dd' }}
+    <fa-icon [icon]="faChevronRight" (click)="increaseDay()" *ngIf="currentDay.getTime() !== today.getTime()"></fa-icon>  
+  </p>
+  <div class="chart">
+    <canvas
+      baseChart
+      [chartType]="chartType"
+      [datasets]="dailyStats"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="false"
+      [colors]="chartColors">
+    </canvas>
+  </div>
 </div> 

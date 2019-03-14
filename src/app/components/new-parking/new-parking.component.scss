@@ -1,0 +1,18 @@
+@import '../../../variables.scss';
+
+.new-parking {
+    margin: 50px auto;
+    width:97%;
+    text-align: right;
+    .full-house {
+        width: 21%;
+        background-color: rgba($color-lighter-gold, .8);
+        margin-left: 79%;
+        padding: 5px;
+        text-align: left;
+    }
+    button {
+        font-size: 1em;
+        padding: 10px;
+    }
+}

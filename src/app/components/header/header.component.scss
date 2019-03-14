@@ -1,0 +1,24 @@
+@import '../../../variables.scss';
+
+.header {
+    background-color: $color-black;
+    color: $color-gold;
+    position: relative;
+    padding: 10px 0;
+
+    button {
+        padding: 5px;
+        margin-left: 10px;
+    }
+
+    h1 {
+        text-align: center;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+    p {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+    }
+}

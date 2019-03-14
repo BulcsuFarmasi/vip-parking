@@ -1,0 +1,50 @@
+@import '../../../variables.scss';
+
+.active-parkings {
+    display: block;
+    width: 97%;
+    margin: -100px auto 0;
+
+    button {
+        padding: 10px;
+    }
+
+    .search {
+        margin-top:1px;
+        button, input {
+            margin-right:5px
+        }
+        input {
+            padding: 10px;
+            border: none;
+        }
+
+    }
+
+    .no-parking {
+        background-color: rgba($color-lighter-gold, $alpha: .95); 
+        padding:10px;
+    }
+
+    table {
+        width:100%;
+        border-collapse: collapse;
+        margin-top: 50px;
+        button {
+            color: $color-gold;
+            background-color: rgba($color-black, .8);
+        }
+    }
+    tr {
+        &:nth-child(even) {
+            background-color: rgba($color-lighter-gold, $alpha: .95); 
+        }
+        &:nth-child(odd) {
+            background-color: rgba($color-gold, $alpha: .95) 
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    }
+}

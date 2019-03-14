@@ -4,16 +4,35 @@
 * {
     font-family: 'Myriad Pro', sans-serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.amount {
+    font-size: 2.5em;
 }
 
 body {
-    background: $color-black url('./assets/images/bg.jpg') 0 0/100% no-repeat;
+    background: $color-black url('./assets/images/bg.jpg') 0 0/100% no-repeat; 
 }
 
-h1 {
-    color:$color-gold;
-    font-weight: lighter;
-    font-size: 4em;
-    margin-left:5%;
+button {
+    color: $color-black;
+    background-color: rgba($color-gold,.8);
+    border:none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+        background-color: rgba($color-lighter-gold,.8);
+    }
+    &:focus {
+        outline:none
+    }
 }
+
+h2 {
+    font-weight: normal;
+}
+
+
 

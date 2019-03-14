@@ -27,7 +27,11 @@ getStats (day:Date) {
   if(!this.stats.has(day.getTime())) {
     let dailyStats = [];
     for (let i = 0; i < 24; i++) {
-      dailyStats.push(1)
+      if (i % 2 === 0) {
+        dailyStats.push(10);
+      } else {
+        dailyStats.push(15);
+      }
     }
     this.stats.set(day.getTime(), dailyStats);
   }
